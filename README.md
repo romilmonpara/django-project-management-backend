@@ -67,6 +67,7 @@ python manage.py runserver
 |-----------|---------|-------------|
 | `/api/accounts/register/` | POST | Register a new user |
 | `/api/accounts/login/` | POST | Obtain auth token |
+| `/api/accounts/me/` | GET | Fetch User Details|
 
 ### Projects
 | Endpoint | Method | Description |
