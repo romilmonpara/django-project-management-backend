@@ -52,7 +52,8 @@ class TaskViewSet(viewsets.ModelViewSet):
         try:
             assign_to_user = project_members.get(pk=user_id)
         except Exception:
-            return Response({'error': 'User is not a member of this project!'}, status=status.HTTP_403_FORBIDDEN)
+            return Response({'error': 'User is not a member of this project!'}, 
+                            status=status.HTTP_403_FORBIDDEN)
 
         task.assigned_to = assign_to_user
         task.save()
@@ -61,6 +62,11 @@ class TaskViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'], url_path='complete')
     def complete(self, request, pk=None):
         task = self.get_object()
+
+        if self.request.user not in project.members.all():
+            return Response(
+                {'error': 'Only project members can Complete tasks.'}, 
+                status=status.HTTP_403_FORBIDDEN)
         task.status = 'completed'
         task.save()
         return Response({'status': 'task marked as completed'}, status=status.HTTP_200_OK)
@@ -80,10 +86,20 @@ class TaskViewSet(viewsets.ModelViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CommentViewSet(viewsets.ModelViewSet):
-    queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticated]
     filterset_fields = ['task', 'user']
 
+    def get_queryset(self):
+        # Show only comments from projects where the user is a member
+        user = self.request.user
+        return Comment.objects.filter(task__project__members=user)
+
     def perform_create(self, serializer):
+        # Allow only project members to comment
+        task = serializer.validated_data['task']
+        if self.request.user not in task.project.members.all():
+            return Response({'error': 'Only project members can comment on this task.'},
+                            status=status.HTTP_403_FORBIDDEN)
         serializer.save(user=self.request.user)
+
