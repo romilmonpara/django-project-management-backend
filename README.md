@@ -36,7 +36,7 @@ project_management/
 
 ---
 
-# ⚙️ Setup Instructions
+## ⚙️ Setup Instructions
 
 1️⃣ Clone the repository:
 ```bash
