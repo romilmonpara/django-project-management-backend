@@ -100,5 +100,5 @@ python manage.py runserver
 
 ## 🧑‍💻 Author
 **Monpara Romil Kamleshbhai**  
-B.Tech Information Technology, LJIET  
+B.Tech Information Technology, LJIET
 📍 Ahmedabad, India
