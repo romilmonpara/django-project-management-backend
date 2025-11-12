@@ -21,11 +21,6 @@ class CustomAuthToken(ObtainAuthToken):
         token = Token.objects.get(key=response.data['token'])
         return Response({'token': token.key})
 
-# class ProfileView(APIView):
-#     permission_classes = [permissions.IsAuthenticated]
-#     def get(self, request):
-#         serializer = UserProfileSerializer(request.user)
-#         return Response(serializer.data)
 class ProfileView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
