@@ -1,0 +1,21 @@
+# Python cache and bytecode
+*.pyc
+__pycache__/
+
+# Virtual environments
+venv/
+ENV/
+.env/
+
+# Django migrations (you may want to keep these if collaborating)
+*.sqlite3
+
+# Environment variables
+.env
+
+# VS Code/config
+.vscode/
+
+# Static/temp files
+staticfiles/
+media/
