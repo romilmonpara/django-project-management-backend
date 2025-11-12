@@ -40,7 +40,7 @@ project_management/
 
 1️⃣ Clone the repository:
 ```bash
-git clone https://github.com/<your-username>/django-project-management-backend.git
+git clone https://github.com/romilmonpara/django-project-management-backend.git
 cd django-project-management-backend
 ```
 
