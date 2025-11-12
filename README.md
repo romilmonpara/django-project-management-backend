@@ -86,6 +86,19 @@ python manage.py runserver
 | `/api/tasks/{id}/comments/` | GET, POST | Task comments |
 | `/api/comments/` | GET | List comments |
 
+### Filters
+
+| Endpoint       | Filter Example              | Description                        |
+| -------------- | --------------------------- | ---------------------------------- |
+| /api/projects/ | ?status=completed           | Get completed projects             |
+| /api/projects/ | ?created_by=2               | Get projects created by user ID 2  |
+| /api/tasks/    | ?project=4                  | Get tasks from project ID 4        |
+| /api/tasks/    | ?assigned_to=5              | Get tasks assigned to user ID 5    |
+| /api/tasks/    | ?status=pending             | Get pending tasks                  |
+| /api/tasks/    | ?project=4&status=completed | Get completed tasks from project 4 |
+| /api/comments/ | ?task=3                     | Get comments for task ID 3         |
+| /api/comments/ | ?author=6                   | Get comments made by user ID 6     |
+
 ---
 
 ## 🧠 Example Lifecycle
